@@ -11,28 +11,6 @@
 
 @implementation Helper
 
-//+ (void)getDataFrom:(NSString *)url success:(void (^)(NSString *))success failure:(void(^)(NSError* error))failure {
-//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//        [request setHTTPMethod:@"GET"];
-//        [request setURL:[NSURL URLWithString:url]];
-//
-//    NSLog(@"Request reply: %@", url);
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-//    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-//    {
-//        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-//         NSString *requestReply = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-//        if(httpResponse.statusCode == 200) {
-//            NSLog(@"Request reply: %@", requestReply);
-//            success(requestReply);
-//        }
-//        else {
-//            NSLog(@"Error");
-//        }
-//    }];
-//    [dataTask resume];
-//
-//}
 + (NSString *)getDataFrom:(NSString *)url {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setHTTPMethod:@"GET"];
@@ -56,7 +34,7 @@
         c[strlen (c) - 1] = '\0';
 }
 
-+ (NSString *)getQueryString {
++ (NSArray *)getQueryString {
     // Read chars with fgets.
     char *artistName = malloc(MAX_NAME_SZ);
     char *trackName = malloc(MAX_NAME_SZ);;
@@ -68,9 +46,7 @@
     // Remove new line.
     [self removeNewLine:artistName];
     [self removeNewLine:trackName];
-    //    removeNewLine(artistName);
-//    removeNewLine(trackName);
-    
+
     // Create NSMutableStrings from chars.
     NSMutableString *artist = [NSMutableString stringWithCString:artistName encoding:1];
     NSMutableString *track = [NSMutableString stringWithCString:trackName encoding:1];
@@ -80,18 +56,31 @@
     [query appendString:@"+"];
     [query appendString:track];
     
-    // Repace whitespaces by '+'.
-    return  [query stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    // Repace whitespaces by '+' and return array.
+    return [[NSArray alloc] initWithObjects:artist, track, [query stringByReplacingOccurrencesOfString:@" " withString:@"+"], nil];
 }
 
-+ (void)printResults:(NSDictionary *)dict {
++ (void)printResults:(NSDictionary *)dict withArray:(NSArray *)array {
+    BOOL alreadyOut = NO;
     NSArray *results = [dict objectForKey:@"results"];
     for (NSDictionary *result in results) {
-        NSLog(@"Artist: %@",[result objectForKey:@"artistName"]);
-        NSLog(@"Track: %@",[result objectForKey:@"trackName"]);
-        NSLog(@"Album: %@",[result objectForKey:@"collectionName"]);
-        NSLog(@"- - - - -");
+        
+        // Check if results match the input.
+        if ([[result objectForKey:@"artistName"] localizedStandardContainsString:[array objectAtIndex:0]] && [[result objectForKey:@"trackName"] localizedStandardContainsString:[array objectAtIndex:1]]) {
+            alreadyOut = YES;
+            NSLog(@"It's already out on iTunes!");
+            NSLog(@"- - - - -");
+            NSLog(@"Artist: %@",[result objectForKey:@"artistName"]);
+            NSLog(@"Track: %@",[result objectForKey:@"trackName"]);
+            NSLog(@"Album: %@",[result objectForKey:@"collectionName"]);
+            NSLog(@"- - - - -");
+            break;
+        }
     }
+    if (!alreadyOut) {
+        NSLog(@"No track/artist match found on iTunes.");
+    }
+    
 }
 
 @end

@@ -13,32 +13,14 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         // Create query string.
-        NSString *finalQuery = [Helper getQueryString];
-        NSLog(@"Query: %@", finalQuery);
-        
+        NSArray *array = [Helper getQueryString];
+                
         // Create query url.
         NSMutableString *queryURL = [NSMutableString stringWithFormat:@"https://itunes.apple.com/search?term="];
-        [queryURL appendString:finalQuery];
+        [queryURL appendString:[array objectAtIndex:2]];
         
         // Send request and receive data.
         NSString *response = [Helper getDataFrom:queryURL];
-        
-//        [Helper getDataFrom:queryURL success:^(NSString *responseDict ) {
-//            // Parse json data.
-//            NSData* jsonData = [responseDict dataUsingEncoding:NSUTF8StringEncoding];
-//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:nil];
-//
-//            // Check for results.
-//            NSNumber *resultCount = [dict objectForKey:@"resultCount"];
-//            if ([resultCount isNotEqualTo:@0]) {
-//                [Helper printResults:dict];
-//            }
-//            else {
-//                NSLog(@"No results.");
-//            }
-//        } failure:^(NSError *error) {
-//            NSLog(@"%@",error);
-//        }];
 
         // Parse json data.
         NSData* jsonData = [response dataUsingEncoding:NSUTF8StringEncoding];
@@ -47,10 +29,10 @@ int main(int argc, const char * argv[]) {
         // Check for results.
         NSNumber *resultCount = [dict objectForKey:@"resultCount"];
         if ([resultCount isNotEqualTo:@0]) {
-            [Helper printResults:dict];
+            [Helper printResults:dict withArray:array];
         }
         else {
-            NSLog(@"No results.");
+            NSLog(@"No results on iTunes.");
         }
     }
     return 0;
