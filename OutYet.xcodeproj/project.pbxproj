@@ -28,6 +28,7 @@
 		5B971C3E1F573F1800C31B60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5B971C451F57494A00C31B60 /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		5B971C461F57494A00C31B60 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		5B971C481F5ACFB200C31B60 /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				5B971C3E1F573F1800C31B60 /* main.m */,
+				5B971C481F5ACFB200C31B60 /* Request.h */,
 				5B971C451F57494A00C31B60 /* Helper.h */,
 				5B971C461F57494A00C31B60 /* Helper.m */,
 			);

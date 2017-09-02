@@ -13,7 +13,7 @@
 + (NSString*)getDataFrom:(NSString *)url;
 //+ (void)processResponseUsingData:(NSData*)data;
 //+ (void)getDataFrom:(NSString *)url success:(void (^)(NSString *responseDict))success failure:(void(^)(NSError* error))failure;
-+ (NSArray *)getQueryString;
++ (NSArray *)getQueryParameters;
 + (void)removeNewLine:(char *)c;
 + (void)printResults:(NSDictionary *)dict withArray:(NSArray *)array;
 

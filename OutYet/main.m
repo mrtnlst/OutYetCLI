@@ -13,8 +13,8 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         // Create query string.
-        NSArray *array = [Helper getQueryString];
-                
+        NSArray *array = [Helper getQueryParameters];
+         
         // Create query url.
         NSMutableString *queryURL = [NSMutableString stringWithFormat:@"https://itunes.apple.com/search?term="];
         [queryURL appendString:[array objectAtIndex:2]];

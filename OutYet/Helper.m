@@ -34,7 +34,7 @@
         c[strlen (c) - 1] = '\0';
 }
 
-+ (NSArray *)getQueryString {
++ (NSArray *)getQueryParameters {
     // Read chars with fgets.
     char *artistName = malloc(MAX_NAME_SZ);
     char *trackName = malloc(MAX_NAME_SZ);;
