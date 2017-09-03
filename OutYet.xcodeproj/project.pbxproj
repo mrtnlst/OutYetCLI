@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B971C3F1F573F1800C31B60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B971C3E1F573F1800C31B60 /* main.m */; };
 		5B971C471F57494A00C31B60 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B971C461F57494A00C31B60 /* Helper.m */; };
+		5B971C501F5C2BA600C31B60 /* RequestiTunes.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B971C4F1F5C2BA600C31B60 /* RequestiTunes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,7 +29,9 @@
 		5B971C3E1F573F1800C31B60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5B971C451F57494A00C31B60 /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		5B971C461F57494A00C31B60 /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
-		5B971C481F5ACFB200C31B60 /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
+		5B971C4D1F5C2B1A00C31B60 /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
+		5B971C4E1F5C2BA600C31B60 /* RequestiTunes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestiTunes.h; sourceTree = "<group>"; };
+		5B971C4F1F5C2BA600C31B60 /* RequestiTunes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestiTunes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +64,10 @@
 		5B971C3D1F573F1800C31B60 /* OutYet */ = {
 			isa = PBXGroup;
 			children = (
+				5B971C4E1F5C2BA600C31B60 /* RequestiTunes.h */,
+				5B971C4F1F5C2BA600C31B60 /* RequestiTunes.m */,
+				5B971C4D1F5C2B1A00C31B60 /* Request.h */,
 				5B971C3E1F573F1800C31B60 /* main.m */,
-				5B971C481F5ACFB200C31B60 /* Request.h */,
 				5B971C451F57494A00C31B60 /* Helper.h */,
 				5B971C461F57494A00C31B60 /* Helper.m */,
 			);
@@ -125,6 +130,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B971C501F5C2BA600C31B60 /* RequestiTunes.m in Sources */,
 				5B971C3F1F573F1800C31B60 /* main.m in Sources */,
 				5B971C471F57494A00C31B60 /* Helper.m in Sources */,
 			);

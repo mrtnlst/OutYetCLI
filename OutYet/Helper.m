@@ -11,24 +11,6 @@
 
 @implementation Helper
 
-+ (NSString *)getDataFrom:(NSString *)url {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setHTTPMethod:@"GET"];
-    [request setURL:[NSURL URLWithString:url]];
-
-    NSError *error = nil;
-    NSHTTPURLResponse *responseCode = nil;
-
-    NSData *oResponseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-
-    if([responseCode statusCode] != 200){
-        NSLog(@"Error getting %@, HTTP status code %li", url, (long)[responseCode statusCode]);
-        return nil;
-    }
-
-    return [[NSString alloc] initWithData:oResponseData encoding:NSUTF8StringEncoding];
-}
-
 + (void)removeNewLine:(char *)c {
     if ((strlen(c)>0) && (c[strlen (c) - 1] == '\n'))
         c[strlen (c) - 1] = '\0';
@@ -58,29 +40,6 @@
     
     // Repace whitespaces by '+' and return array.
     return [[NSArray alloc] initWithObjects:artist, track, [query stringByReplacingOccurrencesOfString:@" " withString:@"+"], nil];
-}
-
-+ (void)printResults:(NSDictionary *)dict withArray:(NSArray *)array {
-    BOOL alreadyOut = NO;
-    NSArray *results = [dict objectForKey:@"results"];
-    for (NSDictionary *result in results) {
-        
-        // Check if results match the input.
-        if ([[result objectForKey:@"artistName"] localizedStandardContainsString:[array objectAtIndex:0]] && [[result objectForKey:@"trackName"] localizedStandardContainsString:[array objectAtIndex:1]]) {
-            alreadyOut = YES;
-            NSLog(@"It's already out on iTunes!");
-            NSLog(@"- - - - -");
-            NSLog(@"Artist: %@",[result objectForKey:@"artistName"]);
-            NSLog(@"Track: %@",[result objectForKey:@"trackName"]);
-            NSLog(@"Album: %@",[result objectForKey:@"collectionName"]);
-            NSLog(@"- - - - -");
-            break;
-        }
-    }
-    if (!alreadyOut) {
-        NSLog(@"No track/artist match found on iTunes.");
-    }
-    
 }
 
 @end

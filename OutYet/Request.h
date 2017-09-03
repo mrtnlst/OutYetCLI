@@ -2,16 +2,22 @@
 //  Request.h
 //  OutYet
 //
-//  Created by martin on 02.09.17.
+//  Created by martin on 03.09.17.
 //  Copyright © 2017 martinlist. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@protocol Request
+@protocol Request <NSObject>
 
-@property (readonly) NSString *artist;
+@property (readonly) NSMutableString *artist;
 @property (readonly) NSString *album;
-@property (readonly) NSString *trackName;
+@property (readonly) NSMutableString *track;
+
+- (id)initWithArtistName:(NSString *)a withTrackName:(NSString *)t;
+- (NSString*)createQueryURL;
+- (NSString*)getDataFrom:(NSString *)queryURL;
+- (void)analyseContentOf:(NSString *)response;
+- (void)printResults;
 
 @end
